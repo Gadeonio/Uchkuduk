@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<title>Сайт с самыми лучшими рецептами</title>
 		<link rel="stylesheet" href="css/styles.css">
+		<script src="refactorHeadname.js"></script>
 	</head>
 		<body>
 			<div class="wrapper">
@@ -12,39 +13,62 @@
 					<a href="index.html"><img src="images/index/logo.png" width="100" height="100" alt="Логотип" class="round">  </a>
 					<nav>
 					<ul class="top-menu">
-						<li class="active"><a href="index.html">Главная</a></li>
+						<li><a href="index.html">Главная</a></li>
 						<li><a href="recipes.html">Рецепты</a></li>
 						<li><a href="search.html">Поиск</a></li>
 						<li><a href="addrecipe.html">Добавить рецепт</a></li>
 					</ul>
 					</nav>
 				</header>
-					<main>
+					<main id="addrecipe">
 					<article>
+						<section>
+							<h3 id="headname">СТРАНИЦА</h3>
+						</section>
 						<section>
 								<h1>
 									Добавьте ваш рецепт
 								</h1>
 							<p class="ot">Если вам не удалось найти нужный рецепт или вы просто хотите поделиться своим рецептом, здесь вы можете его добавить.</p>
 						</section>
+						<!--
 						<section>
-						<form>
-							<input type="file" accept="image/*" multiple />
-						</form>
+							<form>
+								<input type="file" accept="image/*" multiple />
+							</form>
 						</section>
 						<section>
-								<form class="formToTitle">
-							<input type="text" placeholder="Введите название">
-						</form>
+							<form class="formToTitle">
+								<input type="text" placeholder="Введите название">
+							</form>
 						</section>
 						<section>
-								<form class="formtoadd">
-							<input type="text" placeholder="Добавьте свой рецепт">
-						</form>
+							<form class="formtoadd">
+								<input type="text" placeholder="Добавьте свой рецепт">
+							</form>
 						</section>
 						<section class="button">
 							<button type="submit">Отправить</button>
 						</section>
+						-->
+
+						<form onsubmit="formSubmit(this)">
+							<section>
+								<input type="file" accept="image/*" multiple name="picture_recipe"/>
+							</section>
+							<section class="formToTitle">
+								<input type="text" placeholder="Введите название" name="name_recipe">
+							</section>
+							<section class="formToTitle">
+								<input type="text" placeholder="Введите имя автора" name="athor_recipe">
+							</section>
+							<section class="formtoadd">
+								<input type="text" placeholder="Добавьте свой рецепт" name="text_recipe">
+							</section>
+							<section class="button">
+								<button type="submit">Отправить</button>
+							</section>
+						</form>
 					</article>
 				</main>
 			</div>
@@ -61,6 +85,9 @@
 				</div>
 			</footer>
 		</body>
+	<script src="js/refactor_headname.js"></script>
+	<script src="js/active_nav.js"></script>
+	<script src="js/alert_in_form.js"></script>
 </html>
 
 

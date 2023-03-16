@@ -5,6 +5,7 @@
 		<meta charset="utf-8">
 		<title>Сайт с самыми лучшими рецептами</title>
 		<link rel="stylesheet" href="css/styles.css">
+		<script src="refactorHeadname.js"></script>
 	</head>
 		<body>
 			<div class="wrapper">
@@ -12,15 +13,18 @@
 					<a href="index.html"><img src="images/index/logo.png" width="100" height="100" alt="Логотип" class="round">  </a>
 					<nav>
 					<ul class="top-menu">
-						<li class="active"><a href="index.html">Главная</a></li>
+						<li><a href="index.html">Главная</a></li>
 						<li><a href="recipes.html">Рецепты</a></li>
 						<li><a href="search.html">Поиск</a></li>
 						<li><a href="addrecipe.html">Добавить рецепт</a></li>
 					</ul>
 					</nav>
 				</header>
-					<main>
+					<main id="search">
 					<article>
+						<section>
+							<h3 id="headname">СТРАНИЦА</h3>
+						</section>
 						<section>
 								<h1>Найдите нужный рецепт
 								</h1>
@@ -48,6 +52,9 @@
 				</div>
 			</footer>
 		</body>
+	<script src="js/refactor_headname.js"></script>
+	<script src="js/active_nav.js"></script>
+
 </html>
 
 
