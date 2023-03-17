@@ -17,7 +17,7 @@ switch(main_id) {
 		break;
 	default:
 		text = "Алина, что за страница?";
-};
+}
 headtext.textContent = text
 
 
