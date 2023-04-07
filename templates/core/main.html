@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="ru">
+	<head>
+		<link rel="icon" href="{% static "core/images/main/Logo.png" %}">
+		<meta charset="utf-8">
+		<!--<title>Сайт с самыми лучшими рецептами</title>-->
+
+            <title>{{ title }}</title>
+
+		<link rel="stylesheet" href="{% static 'core/stylesheets/styles.css' %}">
+	</head>
+		<body>
+			<div class="wrapper">
+				<header>
+					<a href=""><img src="{% static 'core/images/main/Logo.png' %}" width="100" height="100" alt="Логотип" class="round">  </a>
+					<nav>
+                        <ul class="top-menu">
+                            {% for key, nav_name  in nav_names.items %}
+                                <li><a href="{% url key %}">{{ nav_name }}</a></li>
+                            {% endfor %}
+                        </ul>
+					</nav>
+				</header>
+				{% block content %}
+				{% endblock %}
+                {% block ajax %}
+                {% endblock %}
+			</div>
+
+			<footer>
+				<div class="footer">
+					<div id="social">
+						<h3>Социальные сети</h3>
+						<a href="http://youtube.com/" class="social-icon youtube"></a>
+						<a href="http://google.com/" class="social-icon google"></a>
+					</div>
+					<div id="footer-logo">
+						<a href="/"><img src="{% static 'core/images/main/Logo.png' %}" width="50" height="50" alt="Логотип"></a>
+					</div>
+				</div>
+			</footer>
+		</body>
+
+    <script>
+        const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
+    </script>
+    <script src="{% static 'core/js/jquery-3.6.0.min.js' %}"></script>
+	<script src="{% static 'core/js/refactor_headname.js' %}"></script>
+	<script src="{% static 'core/js/active_nav.js' %}"></script>
+	<script src="{% static 'core/js/hide_and_seek_with_p.js' %}"></script>
+	<script src="{% static 'core/js/top-menu_li_activate.js' %}"></script>
+    <script src="{% static 'core/js/alert_in_form.js' %}"></script>
+    <script src="{% static 'core/js/animation_picture.js' %}"></script>
+    <!--<script src="{# {% static 'core/js/formsend.js' %}"> #}</script>-->
+</html>

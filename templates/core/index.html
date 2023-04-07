@@ -1,0 +1,40 @@
+{% extends "core/main.html" %}
+{% load static %}
+{% block content %}
+    <main id="home">
+        <article>
+            <section>
+                <h3 id="headname">СТРАНИЦА</h3>
+            </section>
+            <section class="hidebox">
+                <h1 flag="true">
+                    Добро пожаловать на сайт, посвященный десертам!
+                </h1>
+                <p class="ot">
+                    А вы умеете готовить вкусные и оригинальные десерты? Если нет, то не беда - на нашем сайте можно
+                    найти рецепты дсертов и выпечки. Торты, пирожные, кексы, бисквиты и многое другое.
+                </p>
+            </section>
+
+            <section>
+                <figure>
+                    <img src="{% static 'core/images/index/1.png' %}" alt="Recipes" width="370" height="250">
+                </figure>
+                <figure>
+                    <img src="{% static 'core/images/index/2.jpg' %}" alt="Recipes" width="370" height="250">
+                </figure>
+                <figure>
+                    <img src="{% static 'core/images/index/3.jpg' %}" alt="Recipes" width="370" height="250">
+                </figure>
+                <figure>
+                    <img src="{% static 'core/images/index/4.jpg' %}" alt="Recipes" width="370" height="250">
+                </figure>
+            </section>
+        </article>
+    </main>
+{% endblock %}
+
+
+
+
+

@@ -1,0 +1,25 @@
+{% extends "core/main.html" %}
+{% load static %}
+{% block content %}
+    <main id="search">
+        <article>
+            <section>
+                <h3 id="headname">СТРАНИЦА</h3>
+            </section>
+            <section>
+                <h1>Найдите нужный рецепт
+                </h1>
+            </section>
+            <section>
+                <form class="formForSearch" action="search" method="get">
+                    <input type="search" placeholder="Введите запрос...">
+                    <button type="submit">Поиск</button>
+                </form>
+            </section>
+        </article>
+    </main>
+{% endblock %}
+
+
+
+

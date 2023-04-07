@@ -1,0 +1,43 @@
+{% extends "core/main.html" %}
+{% load static %}
+{% block content %}
+    <main id="addrecipe">
+        <article>
+            <section>
+                <h3 id="headname">СТРАНИЦА</h3>
+            </section>
+            <section>
+                <h1>
+                    Добавьте ваш рецепт
+                </h1>
+                <p class="ot">Если вам не удалось найти нужный рецепт или вы просто хотите поделиться своим рецептом,
+                    здесь вы можете его добавить.</p>
+            </section>
+
+            <form onsubmit="formSubmit(this)" method="post">
+                {% csrf_token %}
+                <section>
+                    <input type="file" accept="image/*" multiple name="picture_recipe"/>
+                </section>
+                <section class="formToTitle">
+                    <input type="text" placeholder="Введите название" name="name_recipe">
+                </section>
+                <section class="formToTitle">
+                    <input type="text" placeholder="Введите имя автора" name="athor_recipe">
+                </section>
+                <section class="formtoadd">
+                    <input type="text" placeholder="Добавьте свой рецепт" name="text_recipe">
+                </section>
+                <section class="button">
+                    <button type="submit" id="sendbtn">Отправить</button>
+                </section>
+            </form>
+        </article>
+    </main>
+{% endblock %}
+{% block ajax %}
+    <h2 id="statusfield">Ожидание заполнения формы</h2>
+{% endblock %}
+
+
+

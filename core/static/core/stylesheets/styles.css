@@ -162,12 +162,12 @@ button[type="submit"]{
 }
 
 .youtube {
-	background: url(../images/index/youtube.png);
+	background: white url("image/main/youtube.png") no-repeat;
 	background-position: 0 0;
 }
 
 .google {
-	background: url(../images/index/google.png);
+	background: url("image/main/google.png");
 	background-position: -30px 0;
 }
 
