@@ -1,3 +1,5 @@
+import json
+
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader, RequestContext
@@ -52,33 +54,29 @@ class AddRecipeView(TitleMixin, NavMixin, TemplateView):
     template_name = "core/addrecipe.html"
     title = "Добавление рецептов"
 
+    def post(self, request, *args, **kwargs):
+        if request.method == "POST":
+            body_unicode = request.body.decode('utf-8')
+            body_data = json.loads(body_unicode)
+            print(type(body_data))
 
-class JSONResponseMixin:
-    """
-    A mixin that can be used to render a JSON response.
-    """
+            name = body_data['name']
+            athor = body_data['athor']
+            text = body_data['text']
+            msg = ""
+            if text == '':
+                msg = "Нужен сам рецепт!!!"
+            elif athor == '':
+                msg = "Спасибо за рецепт, Анонимус"
+            else:
+                msg = "Спасибо за рецепт, " + str(athor)
+            print(msg)
+            return JsonResponse({'message': msg}, safe=False)
+        else:
+            return render(request, template_name=self.template_name)
 
-    def render_to_json_response(self, context, **response_kwargs):
-        """
-        Returns a JSON response, transforming 'context' to make the payload.
-        """
-        return JsonResponse(self.get_data(context), **response_kwargs)
 
-    def get_data(self, context):
-        """
-        Returns an object that will be serialized as JSON by json.dumps().
-        """
-        # Note: This is *EXTREMELY* naive; in reality, you'll need
-        # to do much more complex handling to ensure that arbitrary
-        # objects -- such as Django model instances or querysets
-        # -- can be serialized as JSON.
-        return context
 
-def bad_request():
-    return JsonResponse({'error': 'Bad request'}), 400
-
-def json_response(data, code=200):
-    return HttpResponse(status=code, mimetype="application/json", response=data)
 
 
 class RecipeView(TitleMixin, NavMixin, TemplateView):
