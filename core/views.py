@@ -58,7 +58,7 @@ class AddRecipeView(TitleMixin, NavMixin, TemplateView):
         if request.method == "POST":
             body_unicode = request.body.decode('utf-8')
             body_data = json.loads(body_unicode)
-            print(type(body_data))
+            #лучше использовать loger вместо print
 
             name = body_data['name']
             athor = body_data['athor']
@@ -70,7 +70,6 @@ class AddRecipeView(TitleMixin, NavMixin, TemplateView):
                 msg = "Спасибо за рецепт, Анонимус"
             else:
                 msg = "Спасибо за рецепт, " + str(athor)
-            print(msg)
             return JsonResponse({'message': msg}, safe=False)
         else:
             return render(request, template_name=self.template_name)
