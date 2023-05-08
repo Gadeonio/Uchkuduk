@@ -11,10 +11,10 @@ sendbtn.addEventListener("click", function (e) {
     e.preventDefault();
     // Получаем данные полей формы
     let name_recipe = document.getElementsByName("name_recipe")[0].value;
-    let athor_recipe = document.getElementsByName("athor_recipe")[0].value;
+    let author_recipe = document.getElementsByName("author_recipe")[0].value;
     let text_recipe = document.getElementsByName("text_recipe")[0].value;
     // Преобразуем полученные данные в JSON
-    var formdata = JSON.stringify({ name: name_recipe, athor: athor_recipe, text: text_recipe});
+    var formdata = JSON.stringify({ name: name_recipe, author: author_recipe, text: text_recipe});
     
     // Отправляем запрос через fetch (необходимо выставить соответствующий заголовок (headers)!)
     fetch("",
