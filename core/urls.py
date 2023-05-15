@@ -14,4 +14,7 @@ urlpatterns = [
     path("api/recipe/", views.AllRecipeView.as_view()),
     path("api/recipe/<int:pk>/", views.ConcreteRecipeView.as_view()),
     path("api/recipe/author/<str:author>/", views.ConcreteRecipe2View.as_view()),
+
+    path("login/", views.MyLoginView.as_view(), name="login"),
+    path("registration/", views.register, name="register")
 ]

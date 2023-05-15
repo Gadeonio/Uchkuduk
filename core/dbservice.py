@@ -1,6 +1,9 @@
 import json
 
 from django.db import connection
+from django.shortcuts import redirect
+
+from django.contrib.auth import authenticate
 
 
 def get_recipe_all():
@@ -106,3 +109,37 @@ def update_recipe_by_pk(pk, request):
         finally:
             cursor.close()
             return {'message': msg}
+
+def register_user(form_data):
+    # Получаем данные пользователя из формы
+    username = form_data.get('loginField')
+    password = form_data.get('passField')
+    email = form_data.get('emailField')
+    # Проверяем полученные данные на наличие обязательных полей
+    if username == '' or password == '' or email == '':
+        return
+        # Создаем хеш пароля с солью
+    with connection.cursor() as cursor:
+        try:
+            cursor.execute(f"INSERT INTO logins "
+                               f"(username, password, email) "
+                               f"VALUES ("
+                               f"'{username}', "
+                               f"'{hashed}', "
+                               f"'{email}'"
+                               ")")
+        # Подтверждение изменений в БД
+        # Переадресуем на страницу авторизации
+            return redirect("core:login")
+        # если возникла ошибка запроса в БД
+        except Exception as e:
+            # откатываем изменения в БД
+            # возвращаем response с ошибкой сервера
+            print(e)
+            return
+
+
+
+# No backend authenticated the credentials
+
+

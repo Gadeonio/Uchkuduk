@@ -1,7 +1,11 @@
 import json
 from functools import singledispatchmethod
 
-
+from django.contrib.auth import authenticate, login
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.views import LoginView
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.template import loader, RequestContext
@@ -10,6 +14,7 @@ from django.views.generic import TemplateView, FormView, View
 from django.http import JsonResponse
 
 from core import dbservice
+from core.forms import RegistrationForm
 
 
 class TitleMixin:
@@ -52,7 +57,7 @@ class IndexView(TitleMixin, NavMixin, TemplateView):
     title = 'Главная страница'
 
 
-class AddRecipeView(TitleMixin, NavMixin, TemplateView):
+class AddRecipeView(LoginRequiredMixin, TitleMixin, NavMixin, TemplateView):
     template_name = "core/addrecipe.html"
     title = "Добавление рецептов"
 
@@ -129,6 +134,56 @@ class ConcreteRecipeView(View):
     def delete(self, request, pk):
         response = dbservice.delete_recipe_by_pk(pk)
         return JsonResponse(response)
+
+
+class MyLoginView(TitleMixin, NavMixin, LoginView):
+    template_name = "core/login.html"
+
+
+def register(request):
+    if request.method == 'POST':
+        user_form = RegistrationForm(request.POST)
+        if user_form.is_valid():
+            # Create a new user object but avoid saving it yet
+            new_user = user_form.save(commit=False)
+            # Set the chosen password
+            new_user.set_password(user_form.cleaned_data['password1'])
+            # Save the User object
+            new_user.save()
+            return render(request, 'core/index.html', {'new_user': new_user})
+        else:
+            print(user_form.errors)
+            return render(request, 'core/registration.html', {'user_form': user_form})
+    else:
+        user_form = RegistrationForm()
+    return render(request, 'core/registration.html', {'user_form': user_form})
+
+'''class RegisterView(FormView):
+    template_name = "core/registration.html"
+    form_class = RegistrationForm
+
+    def post(self, request, *args, **kwargs):
+        if self.form_class.is_valid:
+            user = self.form_class.save(self.form_class, commit=False)
+            user.save()
+            return render(request, 'core/index.html', {'user': user})
+        print(self.form_class.errors)
+        return render(request, template_name=self.template_name)
+
+
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return 'core:index'
+
+"'''
+
+
+
+
+
 
 
 
