@@ -162,12 +162,12 @@ button[type="submit"]{
 }
 
 .youtube {
-	background: white url("image/main/youtube.png") no-repeat;
+	background-image: url("../images/main/youtube.png");
 	background-position: 0 0;
 }
 
 .google {
-	background: url("image/main/google.png");
+	background-image:  url("../images/main/google.png");
 	background-position: -30px 0;
 }
 
@@ -207,6 +207,10 @@ input{
     border: 1px solid grey;
     background-color: #F3F3F3;
     padding: 10px;
+}
+
+.imageInFooter{
+
 }
 
 .formForSearch {

@@ -23,7 +23,7 @@
                     <input type="text" placeholder="Введите название" name="name_recipe">
                 </section>
                 <section class="formToTitle">
-                    <input type="text" placeholder="Введите имя автора" name="athor_recipe">
+                    <input type="text" placeholder="Введите имя автора" name="author_recipe">
                 </section>
                 <section class="formtoadd">
                     <input type="text" placeholder="Добавьте свой рецепт" name="text_recipe">
@@ -37,6 +37,9 @@
 {% endblock %}
 {% block ajax %}
     <h2 id="statusfield">Ожидание заполнения формы</h2>
+{% endblock %}
+{% block script %}
+    <script src="{% static 'js/formsend.js' %}"></script>
 {% endblock %}
 
 
